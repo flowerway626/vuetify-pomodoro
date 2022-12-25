@@ -29,7 +29,9 @@ export const useListStore = defineStore({
         id: this.id++,
         name,
         edit: false,
-        model: name
+        model: name,
+        // 新增時間
+        nowTime: new Date().toLocaleDateString()
       })
     },
     // 取得選擇該項目的 id 值
