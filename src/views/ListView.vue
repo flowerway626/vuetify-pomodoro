@@ -4,7 +4,7 @@ v-row#list
     v-col
       h1.text-center 待完成
     v-col
-      v-table
+      v-table#items
         thead
           tr
             th.text-center 新增日期
@@ -39,7 +39,7 @@ v-row#list
     v-col
       h1.text-center 已完成
     v-col
-      v-table
+      v-table#done
         thead
           tr
             th.text-center.w-75 項目內容

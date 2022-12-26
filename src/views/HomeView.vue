@@ -18,14 +18,15 @@ v-row#home
     v-col.v-col-12
       h1.text-center ＬＩＳＴ
       v-col.v-col-12
-      v-table
-        thead
-          th.w-25 新增日期
-          th 項目內容
-        tbody
-          tr(v-for="item in items" :key="item.id")
-            td {{ item.nowTime }}
-            td {{ item.name }}
+        v-table#all
+          thead
+            tr
+              th.text-center.w-25 新增日期
+              th.text-center 項目內容
+          tbody
+            tr(v-for="item in items" :key="item.id")
+              td {{ item.nowTime }}
+              td {{ item.name }}
 </template>
 
 <script setup>

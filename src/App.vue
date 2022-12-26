@@ -1,7 +1,7 @@
 <template lang="pug">
 v-app
   //- color 可變更顏色主題 vue2官網->style~~->colors
-  v-app-bar(color="blue-grey darken-4")
+  v-app-bar(color="light-blue darken-4")
     //- 導覽列標題
     V-app-bar-title TOMATO
     v-spacer
