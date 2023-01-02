@@ -1,19 +1,19 @@
 <template lang="pug">
-v-app
+v-app(:theme="theme")
   //- color 可變更顏色主題 vue2官網->style~~->colors
-  v-app-bar(color="light-blue darken-4")
-    //- 導覽列標題
-    V-app-bar-title TOMATO
-    v-spacer
+  v-app-bar.text-center(color="blue-grey darken-4")
     //- 回首頁
     v-btn(icon="mdi-home" variant="text" to="/")
     //- 清單
     v-btn(icon="mdi-format-list-bulleted" variant="text" to="/list")
+    //- 導覽列標題
+    V-app-bar-title TOMATO
     //- 設定
     v-btn(icon="mdi-cog" variant="text" to="/settings")
     v-btn(:icon="notify ? 'mdi-bell' : 'mdi-bell-off'" variant="text" @click="toggleNotify")
   v-main
     v-container
+      v-btn(:icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'" @click="themeChange")
       router-view(v-slot="{ Component }")
         //- 保留換頁時元件不會被銷毀
         //- 設定 inlcudes 指定要保留的元件
@@ -25,7 +25,13 @@ v-app
 <script setup>
 import { useSettingsStore } from '@/stores/settings'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 const settings = useSettingsStore()
 const { notify } = storeToRefs(settings)
 const { toggleNotify } = settings
+const theme = ref('dark')
+
+function themeChange () {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+}
 </script>

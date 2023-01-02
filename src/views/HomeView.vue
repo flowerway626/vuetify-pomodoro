@@ -2,14 +2,15 @@
 <!-- 預設首頁 -->
 <template lang="pug">
 v-row#home
-  v-col.v-col-12.v-col-md-6.d-flex.flex-wrap.align-content-center
-    v-col.v-col-12.text-center
-      p.text-h3.text-md-h1.font-weight-bold {{ currentTime }}
-    v-col.v-col-12.text-center
+  v-col#left.v-col-12.v-col-md-6
+    v-col.v-col-12
+      h1.text-h1.font-weight-bold {{ currentTime }}
+    v-col#current.v-col-12
       h1 {{ currentText }}
-      v-btn.mr-5.mt-5(v-if="status !== 1" icon="mdi-play" varient="text" @click="startTimer")
-      v-btn.mr-5.mt-5(v-else icon="mdi-pause" varient="text" @click="pauseTimer")
-      v-btn.mt-5(v-if="currentItem.length > 0" icon="mdi-skip-next" varient="text" @click="finishTimer")
+      v-btn(v-if="status !== 1" icon="mdi-play" varient="text" @click="startTimer")
+      v-btn(v-else icon="mdi-pause" varient="text" @click="pauseTimer")
+      v-btn(v-if="currentItem.length > 0" icon="mdi-skip-next" varient="text" @click="finishTimer")
+      h6 鈴聲： {{ selectedAlarmName }}
   v-col.v-col-12.v-col-md-6
     v-col.v-col-12
       v-text-field(ref="input" v-model="newItem" variant="underlined" label="新增事項" :rules="[rules.required, rules.length]" @keydown.enter="onInputSubmit")
@@ -21,8 +22,8 @@ v-row#home
         v-table#all
           thead
             tr
-              th.text-center.w-25 新增日期
-              th.text-center 項目內容
+              th.w-25 新增日期
+              th 項目內容
           tbody
             tr(v-for="item in items" :key="item.id")
               td {{ item.nowTime }}
@@ -38,7 +39,7 @@ import { storeToRefs } from 'pinia'
 const list = useListStore()
 const { currentItem, items, timeleft } = storeToRefs(list)
 const settings = useSettingsStore()
-const { selectedAlarmFile, notify } = storeToRefs(settings)
+const { selectedAlarmFile, selectedAlarmName, notify } = storeToRefs(settings)
 
 // funciton 不會變，免用響應式免解構省資源
 const { start, countdown, finish, addItem } = list
@@ -134,7 +135,11 @@ const finishTimer = () => {
 // 事項文字
 const currentText = computed(() => {
   // 如果 items 有東西時則顯示 點擊開始
-  return currentItem.value.length > 0 ? currentItem.value : items.value.length > 0 ? '點擊開始' : '沒有事項'
+  return currentItem.value.length > 0
+    ? currentItem.value
+    : items.value.length > 0
+      ? '點擊開始'
+      : '沒有事項'
 })
 
 // 事項倒數計時

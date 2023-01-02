@@ -13,7 +13,7 @@ v-row#list
         tbody
           tr(v-if="items.length === 0")
             td.text-center(colspan="3") 沒有事項
-          tr(v-for="item in items" :key="item.id" ref="editInputs")
+          tr(v-for="item in items" :key="item.id")
             td.text-center {{ item.nowTime }}
             td.text-center
               //- autofocus 選到該欄時自動可以打字
@@ -47,7 +47,7 @@ v-row#list
         tbody
           tr(v-if="finishedItems.length === 0")
             td.text-center(colspan="2") 沒有事項
-          tr(v-for="item in finishedItems" v-else :key="item.id" ref="editInputs")
+          tr(v-for="item in finishedItems" v-else :key="item.id")
             td {{ item.name }}
             td
               v-btn(icon="mdi-delete" variant="text" color="red" @click="delFinishedItem(item.id)")
@@ -56,7 +56,6 @@ v-row#list
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useListStore } from '@/stores/list'
 
@@ -64,8 +63,6 @@ const list = useListStore()
 const { editItem, comfirmEditItem, delItem, undoEditItem, delFinishedItem } =
   list
 const { items, finishedItems } = storeToRefs(list)
-
-const editInputs = ref([])
 
 // 必填驗證 function
 // rules[] 驗證規則

@@ -37,6 +37,10 @@ export const useSettingsStore = defineStore({
     selectedAlarmFile () {
       const i = this.alarms.findIndex(alarm => alarm.id === this.selectedAlarms)
       return this.alarms[i].file
+    },
+    selectedAlarmName () {
+      const i = this.alarms.findIndex(alarm => alarm.id === this.selectedAlarms)
+      return this.alarms[i].name
     }
   },
   // 存在本地端
