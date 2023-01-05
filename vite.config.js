@@ -47,9 +47,9 @@ export default defineConfig({
         // 說明
         description: 'Vuetify 3 Pomodoro',
         // 工具列顏色
-        theme_color: '#004D40',
+        theme_color: '#00451C',
         // 手機開啟時 icon 後面的背景色
-        background_color: '#004D40',
+        background_color: '#00451C',
         // PWA 顯示範圍
         scope: './',
         // PWA 開啟應用程式時進入的網址
