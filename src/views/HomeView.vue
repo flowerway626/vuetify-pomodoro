@@ -3,28 +3,30 @@
 <template lang="pug">
 v-row#home
   v-col#left.v-col-12.v-col-md-6
-    v-col.v-col-12
-      h1.text-h1.font-weight-bold {{ currentTime }}
-    v-col#current.v-col-12
+    v-col(cols="12")
+      h1.text-h2.text-md-h1.font-weight-bold {{ currentTime }}
+    v-col#current(cols="12")
       h1 {{ currentText }}
       v-btn(v-if="status !== 1" icon="mdi-play" varient="text" @click="startTimer")
       v-btn(v-else icon="mdi-pause" varient="text" @click="pauseTimer")
       v-btn(v-if="currentItem.length > 0" icon="mdi-skip-next" varient="text" @click="finishTimer")
       h6 鈴聲： {{ selectedAlarmName }}
   v-col.v-col-12.v-col-md-6
-    v-col.v-col-12
+    v-col(cols="12")
       v-text-field(ref="input" v-model="newItem" variant="underlined" label="新增事項" :rules="[rules.required, rules.length]" @keydown.enter="onInputSubmit")
         template(#append)
           v-btn(icon="mdi-plus" variant="text" @click="onInputSubmit")
-    v-col.v-col-12
-      h1.text-center ＬＩＳＴ
-      v-col.v-col-12
+    v-col(v-if="items.length !== 0" cols="12")
+      h1.text-h4.text-center.font-weight-bold ＬＩＳＴ
+      v-col(cols="12")
         v-table#all
           thead
             tr
               th.w-25 新增日期
               th 項目內容
           tbody
+            tr(v-if="items.length === 0")
+              td.text-center(colspan="2") NONE
             tr(v-for="item in items" :key="item.id")
               td {{ item.nowTime }}
               td {{ item.name }}
@@ -120,9 +122,9 @@ const finishTimer = () => {
   // 播音樂
   audio.play()
   if (notify.value) {
-    const notification = new Notification('事項完成', {
+    const notification = new Notification('完成！', {
       body: currentText.value,
-      icon: 'https://github.com/flowerway626.png'
+      icon: '../assets/tomato.png'
     })
   }
   finish()

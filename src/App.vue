@@ -1,19 +1,23 @@
 <template lang="pug">
 v-app(:theme="theme")
   //- color 可變更顏色主題 vue2官網->style~~->colors
-  v-app-bar.text-center(color="blue-grey darken-4")
-    //- 回首頁
-    v-btn(icon="mdi-home" variant="text" to="/")
-    //- 清單
-    v-btn(icon="mdi-format-list-bulleted" variant="text" to="/list")
+  //- v-app-bar.text-center(color="blue-grey darken-4")
     //- 導覽列標題
-    V-app-bar-title TOMATO
-    //- 設定
-    v-btn(icon="mdi-cog" variant="text" to="/settings")
-    v-btn(:icon="notify ? 'mdi-bell' : 'mdi-bell-off'" variant="text" @click="toggleNotify")
+    V-app-bar-title POMODORO
   v-main
     v-container
-      v-btn(:icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'" @click="themeChange")
+      .text-left
+        img(v-if="theme === 'light'" src="./assets/POMODORO.png")
+        img(v-else src="./assets/POMODORO-white.png")
+      .text-right
+        //- 回首頁
+        v-btn(icon="mdi-home" variant="text" to="/")
+        //- 清單
+        v-btn(icon="mdi-format-list-bulleted" variant="text" to="/list")
+        v-btn(:icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'" @click="themeChange")
+        //- 設定
+        v-btn(icon="mdi-cog" variant="text" to="/settings")
+        v-btn(:icon="notify ? 'mdi-bell' : 'mdi-bell-off'" variant="text" @click="toggleNotify")
       router-view(v-slot="{ Component }")
         //- 保留換頁時元件不會被銷毀
         //- 設定 inlcudes 指定要保留的元件

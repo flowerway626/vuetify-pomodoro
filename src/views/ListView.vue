@@ -7,19 +7,19 @@ v-row#list
       v-table#items
         thead
           tr
-            th.text-center 新增日期
-            th.text-center 項目內容
-            th.text-center 操作
+            th 新增日期
+            th 項目內容
+            th 操作
         tbody
           tr(v-if="items.length === 0")
-            td.text-center(colspan="3") 沒有事項
+            td(colspan="3") NONE
           tr(v-for="item in items" :key="item.id")
-            td.text-center {{ item.nowTime }}
-            td.text-center
+            td {{ item.nowTime }}
+            td
               //- autofocus 選到該欄時自動可以打字
               v-text-field(v-if="item.edit" v-model="item.model" variant="underlined" autofocus :rules="[rules.required, rules.length]")
               span(v-else) {{ item.name }}
-            td.text-center
+            td
               //- 編輯模式
               span(v-if="item.edit")
                 //- 打勾(編輯完成)
@@ -32,8 +32,8 @@ v-row#list
                 v-btn(icon="mdi-pencil" variant="text" color="blue" @click="editItem(item.id)")
                 //- 刪除
                 v-btn(icon="mdi-delete" variant="text" color="red" @click="delItem(item.id)")
-          tr.text-center
-            td.text-center(colspan="3") 共 {{ items.length }} 項
+          tr(v-if="items.length > 0")
+            td(colspan="3") 共 {{ items.length }} 項
     v-divider.mt-5.d-md-none
   v-col.v-col-12.v-col-md-6
     v-col
@@ -42,17 +42,17 @@ v-row#list
       v-table#done
         thead
           tr
-            th.text-center.w-75 項目內容
+            th.w-75 項目內容
             th 操作
         tbody
           tr(v-if="finishedItems.length === 0")
-            td.text-center(colspan="2") 沒有事項
+            td(colspan="2") NONE
           tr(v-for="item in finishedItems" v-else :key="item.id")
             td {{ item.name }}
             td
               v-btn(icon="mdi-delete" variant="text" color="red" @click="delFinishedItem(item.id)")
-          tr
-            td(colspan="2").text-center 共 {{ finishedItems.length }} 項
+          tr(v-if="finishedItems.length > 0")
+            td(colspan="2") 共 {{ finishedItems.length }} 項
 </template>
 
 <script setup>

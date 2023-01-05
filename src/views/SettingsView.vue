@@ -3,18 +3,18 @@ v-row#settings
   v-col(cols="12")
     h1.text-center 設定
   v-col(cols="12")
-    v-table
+    v-table.text-center
       thead
         tr
-          th.text-center 名稱
-          th.text-center 試聽
-          th.text-center 選擇
+          th 名稱
+          th 試聽
+          th 選擇
       tbody
         tr(v-for="alarm in alarms" :key="alarm.id")
           td {{ alarm.name }}
-          td.text-center
+          td
             audio(:src="alarm.file" controls)
-          td.text-center
+          td
             v-radio-group(v-model="selectedAlarms")
               v-radio(:value="alarm.id")
 </template>
