@@ -8,9 +8,10 @@ export const useSettingsStore = defineStore({
     return {
       alarms: [
         { id: 1, name: 'Alarm', file: new URL('@/assets/alarm.mp3', import.meta.url).href },
-        { id: 2, name: 'Yay', file: new URL('@/assets/yay.mp3', import.meta.url).href }
+        { id: 2, name: 'Yay', file: new URL('@/assets/yay.mp3', import.meta.url).href },
+        { id: 3, name: 'Wait', file: new URL('@/assets/wait.mp3', import.meta.url).href }
       ],
-      selectedAlarms: 2,
+      selectedAlarms: 3,
       // 開啟通知(預設關閉)
       notify: false
     }

@@ -3,9 +3,9 @@
 <template lang="pug">
 v-row#home
   v-col#left.v-col-12.v-col-md-6
-    v-col(cols="12")
-      h1.text-h2.text-md-h1.font-weight-bold {{ currentTime }}
-    v-col#current(cols="12")
+    v-col#currentTime(cols="12")
+      h1.font-weight-bold {{ currentTime }}
+    v-col#currentText(cols="12")
       h1 {{ currentText }}
       v-btn(v-if="status !== 1" icon="mdi-play" varient="text" @click="startTimer")
       v-btn(v-else icon="mdi-pause" varient="text" @click="pauseTimer")
@@ -17,7 +17,7 @@ v-row#home
         template(#append)
           v-btn(icon="mdi-plus" variant="text" @click="onInputSubmit")
     v-col(v-if="items.length !== 0" cols="12")
-      h1.text-h4.text-center.font-weight-bold ＬＩＳＴ
+      h1#listText LIST
       v-col(cols="12")
         v-table#all
           thead

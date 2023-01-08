@@ -4,18 +4,26 @@
   background-position: center
   background-size: contain
   background-attachment: fixed
+  font-family: 'Secular One', sans-serif !important
+  letter-spacing: 2px
   .v-table
     border-radius: 10px
 .v-container
   max-width: 90%
   overflow: auto
-  .text-left img
-    width: 80%
+  .text-left h1
     margin: 90px 0 10px
+    font-size: 55px
+    letter-spacing: 5px
   .text-right .v-btn
       margin: 0 0 15px 5px
-  #current .v-btn
+  #home #currentTime h1
+    font-size: 54px
+  #currentText .v-btn
       margin: 1rem
+  #listText 
+    font-size: 34px
+    letter-spacing: 15px
   #home .v-col,#settings th,#all th ,#items td,#items th,#done th,#done td
     text-align: center
 @media (min-width: 992px)
@@ -23,6 +31,7 @@
     background-image: url('./assets/tomato-rg.png')
     background-position: 56%
     background-size: 80% 100%
-    .v-container .text-left img
-      width: 40%
+    .v-container .text-left h1
+      font-size: 64px
+      letter-spacing: 8px
       margin: 15px 0 15px 40%

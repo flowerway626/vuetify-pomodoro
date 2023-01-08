@@ -1,14 +1,10 @@
 <template lang="pug">
 v-app(:theme="theme")
-  //- color 可變更顏色主題 vue2官網->style~~->colors
-  //- v-app-bar.text-center(color="blue-grey darken-4")
-    //- 導覽列標題
-    V-app-bar-title POMODORO
   v-main
     v-container
       .text-left
-        img(v-if="theme === 'light'" src="./assets/POMODORO.png")
-        img(v-else src="./assets/POMODORO-white.png")
+        h1(v-if="theme === 'light'" style="color: black") POMODORO
+        h1(v-else style="color: #E0E0E0") POMODORO
       .text-right
         //- 回首頁
         v-btn(icon="mdi-home" variant="text" to="/")
